@@ -3,7 +3,13 @@
 Certbot DNS-01 authenticator for Namecheap, packaged as a Docker image
 (`dusnm1/certbot-namecheap-dns-plugin:latest`) so it can issue wildcard certificates.
 
-> Status: implemented and unit-tested; not yet run end-to-end against a real domain.
+> Status: in production since 2026-11-13 (apex + wildcard for one domain), after a staging run
+> that left the zone (incl. Custom MX and a 410-char DKIM TXT) unchanged.
+>
+> Certificates live in the host's `/etc/letsencrypt` (read by host nginx). Files there and in
+> `lib/` and `logs/` are created by the container as root; use `sudo` or
+> `docker-compose exec certbot ...` to read them. `deploy/systemd/` has a path unit that
+> reloads host nginx when the certificate changes.
 
 ## Quick start
 

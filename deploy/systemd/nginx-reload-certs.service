@@ -1,0 +1,12 @@
+[Unit]
+Description=Reload nginx after a Let's Encrypt certificate change
+After=nginx.service
+Requisite=nginx.service
+
+[Service]
+Type=oneshot
+# certbot swaps several symlinks one after another; wait until it is done
+ExecStartPre=/bin/sleep 15
+# never reload into a broken config (e.g. key/cert mismatch)
+ExecStartPre=/usr/sbin/nginx -t -q
+ExecStart=/bin/systemctl reload nginx.service
