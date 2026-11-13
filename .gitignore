@@ -1,0 +1,9 @@
+.env
+letsencrypt/
+lib/
+.venv/
+__pycache__/
+*.egg-info/
+build/
+dist/
+.pytest_cache/

@@ -1,0 +1,25 @@
+services:
+  certbot:
+    build:
+      context: .
+    image: dusnm1/certbot-namecheap-dns-plugin:latest
+    restart: unless-stopped
+    environment:
+      # --- Namecheap API ---
+      NAMECHEAP_API_USER: changeme
+      NAMECHEAP_API_KEY: ${NAMECHEAP_API_KEY}   # real value lives in .env (git-ignored)
+      NAMECHEAP_USERNAME: ""                    # defaults to NAMECHEAP_API_USER
+      NAMECHEAP_CLIENT_IP: 203.0.113.10         # whitelisted static IP of this host
+      NAMECHEAP_SANDBOX: "false"
+      NAMECHEAP_PROPAGATION_SECONDS: "120"
+      # --- Certbot ---
+      CERTBOT_EMAIL: admin@example.com
+      # ";" separates certificates, "," separates names within one certificate
+      CERTBOT_CERTS: "example.com,*.example.com"
+      CERTBOT_STAGING: "true"                   # switch to "false" once staging works
+      CERTBOT_KEY_TYPE: ecdsa
+      CERTBOT_RENEW_INTERVAL: 12h
+      CERTBOT_DEPLOY_HOOK: ""
+    volumes:
+      - ./letsencrypt:/etc/letsencrypt
+      - ./lib:/var/lib/letsencrypt

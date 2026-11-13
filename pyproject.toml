@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "certbot-dns-namecheap"
+version = "0.1.0"
+description = "Namecheap DNS Authenticator plugin for Certbot (DNS-01, wildcard certificates)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "certbot>=5.0",
+    "acme>=5.0",
+    "requests>=2.31",
+    "defusedxml>=0.7",
+    "publicsuffixlist>=1.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.entry-points."certbot.plugins"]
+dns-namecheap = "certbot_dns_namecheap._internal.dns_namecheap:Authenticator"
+
+[tool.setuptools.packages.find]
+include = ["certbot_dns_namecheap*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
