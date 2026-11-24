@@ -6,17 +6,17 @@ services:
     restart: unless-stopped
     environment:
       # --- Namecheap API ---
-      NAMECHEAP_API_USER: your-namecheap-user
-      NAMECHEAP_API_KEY: ${NAMECHEAP_API_KEY}   # real value lives in .env (git-ignored)
-      NAMECHEAP_USERNAME: ""                    # defaults to NAMECHEAP_API_USER
-      NAMECHEAP_CLIENT_IP: 203.0.113.10
+      NAMECHEAP_API_USER: ${NAMECHEAP_API_USER}
+      NAMECHEAP_API_KEY: ${NAMECHEAP_API_KEY}   # .env (git-ignored), see .env.example
+      NAMECHEAP_USERNAME: ${NAMECHEAP_USERNAME:-}   # defaults to NAMECHEAP_API_USER
+      NAMECHEAP_CLIENT_IP: ${NAMECHEAP_CLIENT_IP}   # your public IP, whitelisted in Namecheap's API settings
       NAMECHEAP_SANDBOX: "false"
       NAMECHEAP_PROPAGATION_SECONDS: "120"
       # --- Certbot ---
-      CERTBOT_EMAIL: you@example.com
+      CERTBOT_EMAIL: ${CERTBOT_EMAIL}
       # ";" separates certificates, "," separates names within one certificate
-      CERTBOT_CERTS: "example.com,*.example.com"
-      CERTBOT_STAGING: "false"                  # production Let's Encrypt (staging verified 2026-11-13)
+      CERTBOT_CERTS: ${CERTBOT_CERTS}
+      CERTBOT_STAGING: ${CERTBOT_STAGING:-true}  # Let's Encrypt staging until you set false in .env
       CERTBOT_KEY_TYPE: ecdsa
       CERTBOT_RENEW_INTERVAL: 12h
       CERTBOT_DEPLOY_HOOK: ""

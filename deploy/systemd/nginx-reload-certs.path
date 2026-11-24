@@ -1,6 +1,7 @@
 # Reload host nginx whenever certbot (running in Docker) replaces the
 # example.com certificate. certbot updates the symlinks in live/<name>/
 # last, after all new files are in archive/, so the live dir is watched.
+# Replace example.com with your certificate name (the folder under /etc/letsencrypt/live).
 [Unit]
 Description=Watch the example.com Let's Encrypt certificate for changes
 
