@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Namecheap DNS Authenticator plugin for Certbot (DNS-01, wildcard certificates)"
 readme = "README.md"
 requires-python = ">=3.10"
+license = "MIT"
 dependencies = [
     "certbot>=5.0",
     "acme>=5.0",

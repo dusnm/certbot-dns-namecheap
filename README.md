@@ -58,3 +58,7 @@ each zone the plugin:
 
 If cleanup fails, the run still finishes and the log names the records to remove by hand.
 To restore a zone, use the backup JSON (records + `email_type`) as the reference.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
